@@ -1,4 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import {Route, Switch} from 'react-router-dom'
+import Home from "./Home"
+import NavBar from "./NavBar"
+import Purchases from "./Purchases"
+import Wishlist from "./Wishlist"
 
 function App() {
   const [data, setData] = useState([])
@@ -14,7 +19,18 @@ function App() {
 
   return (
     <div className="App">
-      <p>help us dex</p>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/Purchases">
+          <Purchases />
+        </Route>
+        <Route exact path="/Wishlist">
+          <Wishlist />
+        </Route>
+      </Switch>
     </div>
   );
 }
