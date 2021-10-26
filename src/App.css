@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&family=Work+Sans:wght@300&display=swap');
+
 body{margin-top:20px;
+  font-family: 'Work Sans', sans-serif;
   background:#171a21;
   color: #ffffff;
 }
