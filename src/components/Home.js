@@ -1,12 +1,39 @@
 import React from "react";
+import {useEffect, useState} from "react";
 
 function Home({ data }) {
+
+const [saveThisGame, setSaveThisGame] = useState({
+    title: "",
+    price: 0,
+    thumb: ""
+})
+
+const handleSaveDeal = (title, price, thumb, gameID, event) => {
+   
+    
+
+    console.log(event)
+    fetch("http://localhost:9292/deals", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: title,
+            price: price,
+            thumb: thumb,
+            gamelink: `https://www.cheapshark.com/redirect?dealID=${gameID}`
+        })
+    } )
+}
+
     const renderData = () => {
         if (!!data) {
         return data.map((eachGame) => {
             return (
             <div className="game-container">
-                <div className="container">
+                <div className="container" key={eachGame.thumb}>
                 <div className="row">
                     <div className="col-md-3">
                     <div className="ibox">
@@ -32,18 +59,18 @@ function Home({ data }) {
                             </p>
                             </div>
                             <div className="m-t text-righ">
-                            <a
+                            <button
                                 href="#"
                                 className="btn btn-xs btn-outline btn-primary"
-                            >
+                            > 
                                 Buy<i className="fa fa-long-arrow-right"></i>{" "}
-                            </a>
-                            <a
-                                href="#"
+                            </button>
+                            <button
+                                onClick={ () => handleSaveDeal(eachGame.title, eachGame.salePrice, eachGame.thumb, eachGame.dealID)}
                                 className="btn btn-xs btn-outline btn-primary"
                             >
                                 Wishlist<i className="fa fa-long-arrow-right"></i>{" "}
-                            </a>
+                            </button>
                             </div>
                         </div>
                         </div>
