@@ -15,14 +15,12 @@ function App() {
     .then(json => setData(json))
   }, [])
 
-  console.log(data)
-
   return (
     <div className="App">
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home data={data}/>
         </Route>
         <Route exact path="/Purchases">
           <Purchases />
@@ -36,3 +34,8 @@ function App() {
 }
 
 export default App;
+
+// filter with price
+// dropdown to display the number of games
+// style cards
+// get bootstrap working
