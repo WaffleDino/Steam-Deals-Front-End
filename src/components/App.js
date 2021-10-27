@@ -3,10 +3,12 @@ import {Route, Switch} from 'react-router-dom'
 import Home from "./Home"
 import NavBar from "./NavBar"
 import Purchases from "./Purchases"
-import Wishlist from "./Wishlist"
+import SavedDeals from "./SavedDeals"
 
 function App() {
   const [data, setData] = useState([])
+
+  const [currentUser, setCurrentUser] = useState([])
 
   // fetch URL-API
   useEffect(() => {
@@ -25,8 +27,8 @@ function App() {
         <Route exact path="/Purchases">
           <Purchases />
         </Route>
-        <Route exact path="/Wishlist">
-          <Wishlist />
+        <Route exact path="/SavedDeals">
+          <SavedDeals />
         </Route>
       </Switch>
     </div>

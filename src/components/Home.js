@@ -71,7 +71,7 @@ const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, eve
                                 onClick={ () => handleSaveDeal(eachGame.title, eachGame.salePrice, eachGame.thumb, eachGame.dealID, eachGame.steamRatingPercent, eachGame.normalPrice)}
                                 className="btn btn-xs btn-outline btn-primary"
                             >
-                                Wishlist<i className="fa fa-long-arrow-right"></i>{" "}
+                                Save Deal<i className="fa fa-long-arrow-right"></i>{" "}
                             </button>
                             </div>
                         </div>
