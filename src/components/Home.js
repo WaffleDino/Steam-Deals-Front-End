@@ -9,9 +9,8 @@ const [saveThisGame, setSaveThisGame] = useState({
     thumb: ""
 })
 
-const handleSaveDeal = (title, price, thumb, gameID, event) => {
-   
-    
+const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, event) => {
+     
 
     console.log(event)
     fetch("http://localhost:9292/deals", {
@@ -23,7 +22,10 @@ const handleSaveDeal = (title, price, thumb, gameID, event) => {
             title: title,
             price: price,
             thumb: thumb,
-            gamelink: `https://www.cheapshark.com/redirect?dealID=${gameID}`
+            gamelink: `https://www.cheapshark.com/redirect?dealID=${gameID}`,
+            rating: rating,
+            original_price: original_price
+
         })
     } )
 }
@@ -66,7 +68,7 @@ const handleSaveDeal = (title, price, thumb, gameID, event) => {
                                 Buy<i className="fa fa-long-arrow-right"></i>{" "}
                             </button>
                             <button
-                                onClick={ () => handleSaveDeal(eachGame.title, eachGame.salePrice, eachGame.thumb, eachGame.dealID)}
+                                onClick={ () => handleSaveDeal(eachGame.title, eachGame.salePrice, eachGame.thumb, eachGame.dealID, eachGame.steamRatingPercent, eachGame.normalPrice)}
                                 className="btn btn-xs btn-outline btn-primary"
                             >
                                 Wishlist<i className="fa fa-long-arrow-right"></i>{" "}
