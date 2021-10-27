@@ -1,7 +1,7 @@
 // deals
 import React, { useEffect, useState } from 'react';
 
-function Wishlist(){
+function SavedDeals(){
 
 const [savedGames, setSavedGames] = useState([])
 
@@ -73,4 +73,4 @@ useEffect (() => {
 
 }
 
-export default Wishlist
+export default SavedDeals
