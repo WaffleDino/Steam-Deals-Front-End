@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
-import NavBar from "./NavBar";
 import Purchases from "./Purchases";
 import SavedDeals from "./SavedDeals";
 import { NavLink } from "react-router-dom";
@@ -19,9 +18,6 @@ const linkStyles = {
 
 function App() {
   const [data, setData] = useState([]);
-
-  const [currentUser, setCurrentUser] = useState([]);
-
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(0);
 
@@ -34,7 +30,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
-        console.log(users)
+        console.log(users);
       });
   }, []);
 
@@ -104,10 +100,10 @@ function App() {
           <Home data={data} selectedUser={selectedUser} />
         </Route>
         <Route exact path="/Purchases">
-          <Purchases />
+          <Purchases selectedUser={selectedUser} />
         </Route>
         <Route exact path="/SavedDeals">
-          <SavedDeals />
+          <SavedDeals selectedUser={selectedUser} />
         </Route>
       </Switch>
     </div>
