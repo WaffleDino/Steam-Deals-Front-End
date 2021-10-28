@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
 
-function Home({ data }) {
+function Home({ data, selectedUser }) {
 
 const [saveThisGame, setSaveThisGame] = useState({
     title: "",
@@ -9,10 +9,27 @@ const [saveThisGame, setSaveThisGame] = useState({
     thumb: ""
 })
 
-const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, event) => {
-     
+const handlePurchase= (title, price, thumb, gameID, rating, original_price, selectedUser, event) => {
+    console.log(selectedUser)
+    fetch("http://localhost:9292/purchases", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: title,
+            price: price,
+            thumb: thumb,
+            gamelink: `https://www.cheapshark.com/redirect?dealID=${gameID}`,
+            rating: rating,
+            original_price: original_price,
+            user_id: selectedUser
+        })
+    } )
+}
 
-    console.log(event)
+const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, event) => {
+
     fetch("http://localhost:9292/deals", {
         method: "POST",
         headers: {
@@ -62,7 +79,7 @@ const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, eve
                             </div>
                             <div className="m-t text-righ">
                             <button
-                                href="#"
+                                onClick={ () => handlePurchase(eachGame.title, eachGame.salePrice, eachGame.thumb, eachGame.dealID,eachGame.steamRatingPercent,eachGame.normalPrice, selectedUser)}
                                 className="btn btn-xs btn-outline btn-primary"
                             > 
                                 Buy<i className="fa fa-long-arrow-right"></i>{" "}
