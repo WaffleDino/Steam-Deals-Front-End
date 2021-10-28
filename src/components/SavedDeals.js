@@ -16,13 +16,12 @@ function SavedDeals({ selectedUser }) {
         title,
         price,
         thumb,
-        gameID,
+        gamelink,
         rating,
         original_price,
         selectedUser,
         id
     ) => {
-        console.log(selectedUser);
         fetch("http://localhost:9292/purchases", {
         method: "POST",
         headers: {
@@ -32,14 +31,24 @@ function SavedDeals({ selectedUser }) {
             title: title,
             price: price,
             thumb: thumb,
-            gamelink: `https://www.cheapshark.com/redirect?dealID=${gameID}`,
+            gamelink: gamelink,
             rating: rating,
             original_price: original_price,
             user_id: selectedUser,
         }),
         });
-        handleDeleteGame(id);
+    
+       
+        openSteamTab(gamelink, id)
+        
+        
     };
+
+    const openSteamTab = (gamelink, id) => {
+        window.open(gamelink,'_blank')
+        handleDeleteGame(id);
+    }
+    
     
     const removeGameFromState = (id) => {
         const filteredGames = savedGames.filter(game => {
@@ -99,7 +108,7 @@ function SavedDeals({ selectedUser }) {
                                     eachGame.title,
                                     eachGame.price,
                                     eachGame.thumb,
-                                    eachGame.dealID,
+                                    eachGame.gamelink,
                                     eachGame.rating,
                                     eachGame.original_price,
                                     selectedUser,

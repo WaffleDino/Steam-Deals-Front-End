@@ -5,6 +5,9 @@ import Purchases from "./Purchases";
 import SavedDeals from "./SavedDeals";
 import { NavLink } from "react-router-dom";
 
+
+    
+
 const linkStyles = {
   padding: "10px 20px 10px 20px",
   margin: "10px 10px 10px 10px",
@@ -17,6 +20,7 @@ const linkStyles = {
 };
 
 function App() {
+  
   const [data, setData] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(0);

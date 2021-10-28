@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 function Home({ data, selectedUser }) {
     const handlePurchase = (
         title,
@@ -10,6 +12,7 @@ function Home({ data, selectedUser }) {
         original_price,
         selectedUser
     ) => {
+        if (selectedUser !== 0){
         console.log(selectedUser);
         fetch("http://localhost:9292/purchases", {
         method: "POST",
@@ -26,7 +29,12 @@ function Home({ data, selectedUser }) {
             user_id: selectedUser,
         }),
         });
-    };
+        openSteamTab(gameID)
+   }};
+
+    const openSteamTab = (gameID) => {
+        window.open(`https://www.cheapshark.com/redirect?dealID=${gameID}`,'_blank')
+    }
 
     const handleSaveDeal = (
         title,
@@ -37,6 +45,7 @@ function Home({ data, selectedUser }) {
         original_price,
         selectedUser
     ) => {
+        if (selectedUser !== 0){
         fetch("http://localhost:9292/deals", {
         method: "POST",
         headers: {
@@ -52,7 +61,9 @@ function Home({ data, selectedUser }) {
             user_id: selectedUser,
         }),
         });
-    };
+    } 
+    // else{    }
+};
 
     const gameRating = (eachGame) => {
         if (eachGame.steamRatingPercent == 0) {
