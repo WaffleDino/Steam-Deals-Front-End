@@ -1,20 +1,20 @@
 import React from "react";
-import {useEffect, useState} from "react";
 
 function Home({ data, selectedUser }) {
-
-const [saveThisGame, setSaveThisGame] = useState({
-    title: "",
-    price: 0,
-    thumb: ""
-})
-
-const handlePurchase= (title, price, thumb, gameID, rating, original_price, selectedUser, event) => {
-    console.log(selectedUser)
-    fetch("http://localhost:9292/purchases", {
+    const handlePurchase = (
+        title,
+        price,
+        thumb,
+        gameID,
+        rating,
+        original_price,
+        selectedUser
+    ) => {
+        console.log(selectedUser);
+        fetch("http://localhost:9292/purchases", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             title: title,
@@ -23,17 +23,24 @@ const handlePurchase= (title, price, thumb, gameID, rating, original_price, sele
             gamelink: `https://www.cheapshark.com/redirect?dealID=${gameID}`,
             rating: rating,
             original_price: original_price,
-            user_id: selectedUser
-        })
-    } )
-}
+            user_id: selectedUser,
+        }),
+        });
+    };
 
-const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, event) => {
-
-    fetch("http://localhost:9292/deals", {
+    const handleSaveDeal = (
+        title,
+        price,
+        thumb,
+        gameID,
+        rating,
+        original_price,
+        selectedUser
+    ) => {
+        fetch("http://localhost:9292/deals", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             title: title,
@@ -41,12 +48,20 @@ const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, eve
             thumb: thumb,
             gamelink: `https://www.cheapshark.com/redirect?dealID=${gameID}`,
             rating: rating,
-            original_price: original_price
+            original_price: original_price,
+            user_id: selectedUser,
+        }),
+        });
+    };
 
-        })
-    } )
-}
-
+    const gameRating = (eachGame) => {
+        if (eachGame.steamRatingPercent == 0) {
+        return <p>Rating: None</p>
+        } else {
+        return <p id="rating">Rating: {eachGame.steamRatingPercent}%</p>
+        }
+    };
+    
     const renderData = () => {
         if (!!data) {
         return data.map((eachGame) => {
@@ -58,34 +73,52 @@ const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, eve
                     <div className="ibox">
                         <div className="ibox-content product-box">
                         <div className="product-imitation">
-                            <img className="game-thumb" alt="game-thumb" src={eachGame.thumb} />
+                            <img
+                            className="game-thumb"
+                            alt="game-thumb"
+                            src={eachGame.thumb}
+                            />
                         </div>
                         <div className="product-desc">
                             <span className="regular-price">
-                            <p>
-                                Regular Price $ {eachGame.normalPrice}
-                            </p>
+                            <p>Regular Price $ {eachGame.normalPrice}</p>
                             </span>
-                            <span className="sale-price" >
-                            <p>
-                                Sales Price $ {eachGame.salePrice}
-                            </p>
+                            <span className="sale-price">
+                            <p>Sales Price $ {eachGame.salePrice}</p>
                             </span>
                             <h4>{eachGame.title}</h4>
                             <div className="small m-t-xs">
-                            <p id="rating">
-                                Rating: {eachGame.steamRatingPercent}%
-                            </p>
+                                {gameRating(eachGame)}
                             </div>
                             <div className="m-t text-righ">
                             <button
-                                onClick={ () => handlePurchase(eachGame.title, eachGame.salePrice, eachGame.thumb, eachGame.dealID,eachGame.steamRatingPercent,eachGame.normalPrice, selectedUser)}
+                                onClick={() =>
+                                handlePurchase(
+                                    eachGame.title,
+                                    eachGame.salePrice,
+                                    eachGame.thumb,
+                                    eachGame.dealID,
+                                    eachGame.steamRatingPercent,
+                                    eachGame.normalPrice,
+                                    selectedUser
+                                )
+                                }
                                 className="btn btn-xs btn-outline btn-primary"
-                            > 
+                            >
                                 Buy<i className="fa fa-long-arrow-right"></i>{" "}
                             </button>
                             <button
-                                onClick={ () => handleSaveDeal(eachGame.title, eachGame.salePrice, eachGame.thumb, eachGame.dealID, eachGame.steamRatingPercent, eachGame.normalPrice)}
+                                onClick={() =>
+                                handleSaveDeal(
+                                    eachGame.title,
+                                    eachGame.salePrice,
+                                    eachGame.thumb,
+                                    eachGame.dealID,
+                                    eachGame.steamRatingPercent,
+                                    eachGame.normalPrice,
+                                    selectedUser
+                                )
+                                }
                                 className="btn btn-xs btn-outline btn-primary"
                             >
                                 Save Deal<i className="fa fa-long-arrow-right"></i>{" "}
@@ -105,12 +138,9 @@ const handleSaveDeal = (title, price, thumb, gameID, rating, original_price, eve
 
     return (
         <div>
-        <p>Home</p>
         {renderData()}
         </div>
     );
 }
 
 export default Home;
-
-
