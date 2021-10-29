@@ -83,7 +83,7 @@ function Home({ data, selectedUser }) {
             <div className="game-container">
                 <div className="container" key={eachGame.thumb}>
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                     <div className="ibox">
                         <div className="ibox-content product-box">
                         <div className="product-imitation">
@@ -117,7 +117,7 @@ function Home({ data, selectedUser }) {
                                     selectedUser
                                 )
                                 }
-                                className="btn btn-xs btn-outline btn-primary"
+                                className="button"
                             >
                                 Buy<i className="fa fa-long-arrow-right"></i>{" "}
                             </button>
@@ -133,7 +133,7 @@ function Home({ data, selectedUser }) {
                                     selectedUser
                                 )
                                 }
-                                className="btn btn-xs btn-outline btn-primary"
+                                className="button-2"
                             >
                                 Save Deal<i className="fa fa-long-arrow-right"></i>{" "}
                             </button>
@@ -151,7 +151,7 @@ function Home({ data, selectedUser }) {
     };
 
     return (
-        <div>
+        <div className="grid-container">
         {renderData()}
         </div>
     );

@@ -5,14 +5,12 @@ import Purchases from "./Purchases";
 import SavedDeals from "./SavedDeals";
 import { NavLink } from "react-router-dom";
 
-
-    
-
 const linkStyles = {
   padding: "10px 20px 10px 20px",
-  margin: "10px 10px 10px 10px",
-  background: "#f1d302",
+  margin: "10px 10px 10px 5px",
+  background: "#2a475e",
   textDecoration: "none",
+  fontWeight: "bold",
   color: "white",
   justifyContent: "center",
   textAlign: "center",
@@ -55,6 +53,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="title">
+        <h1>Steam Deals</h1>
+      </div>
       <div className="nav-bar">
         <NavLink
           to="/"
@@ -62,7 +63,7 @@ function App() {
           style={linkStyles}
           className="nav-bar-route"
           activeStyle={{
-            background: "#235789",
+            background: "#66c0f4",
           }}
         >
           Home
@@ -74,7 +75,7 @@ function App() {
           style={linkStyles}
           className="nav-bar-route"
           activeStyle={{
-            background: "#235789",
+            background: "#66c0f4",
           }}
         >
           Purchases
@@ -86,12 +87,12 @@ function App() {
           style={linkStyles}
           className="nav-bar-route"
           activeStyle={{
-            background: "#235789",
+            background: "#66c0f4",
           }}
         >
           Saved Deals
         </NavLink>
-        <select onChange={saveSelectedUser}>
+        <select className="dropdown" style={linkStyles} onChange={saveSelectedUser}>
           <option value="" disabled selected>
             Select User
           </option>
