@@ -1,4 +1,5 @@
 import React from "react";
+import {Alert} from 'react-alert'
 
 
 
@@ -30,7 +31,9 @@ function Home({ data, selectedUser }) {
         }),
         });
         openSteamTab(gameID)
-   }};
+   }else{  alert("Select a user before purchasing!")  }
+
+};
 
     const openSteamTab = (gameID) => {
         window.open(`https://www.cheapshark.com/redirect?dealID=${gameID}`,'_blank')
@@ -62,7 +65,7 @@ function Home({ data, selectedUser }) {
         }),
         });
     } 
-    // else{    }
+    else{  alert("Select a user before saving a deal!")  }
 };
 
     const gameRating = (eachGame) => {
