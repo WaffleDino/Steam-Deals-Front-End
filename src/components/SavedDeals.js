@@ -115,13 +115,13 @@ function SavedDeals({ selectedUser }) {
                                     eachGame.id
                                 )
                                 }
-                                className="btn btn-xs btn-outline btn-primary"
+                                className="button"
                                 >
                                 Buy<i className="fa fa-long-arrow-right"></i>{" "}
                                 </button>
                                 <button
                                 onClick={() => handleDeleteGame(eachGame.id)}
-                                className="btn btn-xs btn-outline btn-primary"
+                                className="button-2"
                                 >
                                 Delete<i className="fa fa-long-arrow-right"></i>{" "}
                                 </button>
